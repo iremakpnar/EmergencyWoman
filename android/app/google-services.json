@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "562778108529",
+    "project_id": "emergencywoman-24d63",
+    "storage_bucket": "emergencywoman-24d63.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562778108529:android:09b8fd1a460dbdcc0321d0",
+        "android_client_info": {
+          "package_name": "com.example.emergencywoman"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzf6667qKj6Q4VTUXK2OzE52nKWqmgXU0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
