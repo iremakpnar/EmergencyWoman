@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:emergencywoman/widget/widget_support.dart';
+import 'package:geolocator/geolocator.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -96,6 +97,43 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
     );
   }
 
+  // Konum alma fonksiyonu
+  Future<void> getCurrentLocation() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Konum hizmeti açık mı kontrol edin
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      print('Konum hizmetleri devre dışı. Lütfen etkinleştirin.');
+      return;
+    }
+
+    // Konum izni kontrolü
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        print('Konum izni reddedildi.');
+        return;
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      print('Konum izni kalıcı olarak reddedildi.');
+      return;
+    }
+
+    // Konum bilgisini al
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+
+    print('Konum: Enlem: ${position.latitude}, Boylam: ${position.longitude}');
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,7 +168,8 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                 ),
                 child: const Text(""),
               ),
-              Container(
+              SingleChildScrollView(
+               child:  Container(
                 margin: const EdgeInsets.only(top: 60.0, left: 20.0, right: 20.0),
                 child: Column(
                   children: [
@@ -264,13 +303,16 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                   ],
                 ),
               ),
+              ),
+
               Positioned(
                 bottom: 20.0, // Alt kenara 20px mesafe
                 left: 20.0, // Sol kenara 20px mesafe
                 child: GestureDetector(
-                  onTap: () {
+                  onTap: () async {
                     // Acil durum butonuna tıklama işlemi
                     // Burada istediğiniz acil durum işlevini ekleyebilirsiniz
+                    await getCurrentLocation(); // Konum Bilgisini Al
                     print('Acil Durum Butonuna Tıklandı');
                   },
                   child: AnimatedBuilder(
@@ -295,8 +337,15 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                       child:
                       Image.asset("images/daisy1.png"),
                     ),
-                  );},),),),],),
+                  );
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),);
   }
 }
+

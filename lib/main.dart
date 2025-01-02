@@ -1,12 +1,13 @@
+import 'package:emergencywoman/pages/homepage.dart';
 import 'package:emergencywoman/user_Screen/sos_screen.dart';
 import 'package:emergencywoman/user_Screen/user_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:emergencywoman/user_Screen/user_signup_screen.dart';
-import 'package:emergencywoman/user_Screen/user_login_screen.dart';
 import 'package:emergencywoman/user_Screen/forget_password.dart';
-import 'package:emergencywoman/widget/home_widgets/home_screen.dart';
+import 'package:emergencywoman/pages/onboard.dart';
+
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();

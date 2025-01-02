@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:emergencywoman/widget/widget_support.dart';
-
+import '../pages/homepage.dart';
 import 'forget_password.dart';
+import 'package:geolocator/geolocator.dart';
+
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -68,161 +70,42 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
     }
   }
 
-/*
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: SingleChildScrollView(
-          child: Container(
-            height: MediaQuery.of(context).size.height, // Tam ekran yüksekliği
-            child: Stack(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 2.5,
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Color(0xFFFFCDD2),
-                            Color(0xFFEF9A9A),
-                          ])),
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 3),
-                  height: MediaQuery.of(context).size.height / 2,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(40),
-                          topRight: Radius.circular(40))),
-                  child: Text(""),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 60.0, left: 20.0, right: 20.0),
-                  child: Column(children: [
-                    Center(
-                        child: Image.asset("images/logo1.png",
-                          width: MediaQuery.of(context).size.width / 1.5,
-                          fit: BoxFit.cover,)),
-                    SizedBox(height: 50.0,),
-                    Material(
-                      elevation: 5.0,
-                      borderRadius: BorderRadius.circular(20),
-                      child: Container(
-                        padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height / 2,
-                        decoration: BoxDecoration(color: Colors.white,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Form(
-                          key: _formkey,
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 30.0,),
-                              Text(
-                                'GİRİŞ YAP',
-                                style: AppWidget.HeadlineTextFeildStyle(),),
-                              SizedBox(
-                                height: 30.0,),
-                              TextFormField(
-                                controller: useremailcontroller,
-                                validator: (value){
-                                  if(value==null || value.isEmpty){
-                                    return 'Lütfen Email giriniz';
-                                  }
-                                  return null;
-                                },
-                                decoration: InputDecoration(
-                                    hintText: 'Email',
-                                    hintStyle: AppWidget.semiBoldTextFeildStyle(),
-                                    prefixIcon: Icon(Icons.email_outlined)),
-                              ),
-                              SizedBox(
-                                height: 30.0,),
-                              TextFormField(
-                                controller: userpasswordcontroller,
-                                validator: (value){
-                                  if(value==null || value.isEmpty){
-                                    return 'Lütfen şifrenizi giriniz';
-                                  }
-                                  return null;
-                                },
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                    hintText: 'Şifre',
-                                    hintStyle: AppWidget.semiBoldTextFeildStyle(),
-                                    prefixIcon: Icon(Icons.password_outlined)),
-                              ),
-                              SizedBox(height: 20.0,),
-                              GestureDetector(
-                                onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=> ForgotPassword()));
-                                },
-                                child: Container(
-                                    alignment: Alignment.topRight,
-                                    child: Text('Şifrenizi mi unuttunuz ?',
-                                      style: AppWidget.semiBoldTextFeildStyle(),)),
-                              ),
-                              SizedBox(height: 60.0,),
-                              GestureDetector(
-                                onTap: (){
-                                  if(_formkey.currentState!.validate()){
-                                    setState(() {
-                                      email= useremailcontroller.text;
-                                      password= userpasswordcontroller.text;
-                                    });
-                                  }
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
-                                  userLogin();
-                                },
-                                child: Material(
-                                  elevation: 5.0,
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(vertical: 8.0),
-                                    width: 200,
-                                    decoration: BoxDecoration(color: Color(0xFF1A237E),
-                                        borderRadius: BorderRadius.circular(20)),
-                                    child: Center(
-                                        child: Text(
-                                          'GİRİŞ YAP',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18.0,
-                                              fontFamily: 'Poppins1',
-                                              fontWeight: FontWeight.bold),)),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 70.0,),
-                    GestureDetector(
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => SignUp()));
-                        },
-                        child: Text('Hesabınız yok mu? Kayıt olun',
-                          style: AppWidget.semiBoldTextFeildStyle(),)),
+  // Konum alma fonksiyonu
+  Future<void> _getCurrentLocation() async {
+    bool serviceEnabled;
+    LocationPermission permission;
 
-                  ],),
-                )
-            ],),
-        ),
-    ),);
+    // Konum hizmeti açık mı kontrol edin
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      print('Konum hizmetleri devre dışı. Lütfen etkinleştirin.');
+      return;
+    }
+
+    // Konum izni kontrolü
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        print('Konum izni reddedildi.');
+        return;
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      print('Konum izni kalıcı olarak reddedildi.');
+      return;
+    }
+
+    // Konum bilgisini al
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+
+    print('Konum: Enlem: ${position.latitude}, Boylam: ${position.longitude}');
   }
-}
 
-*/
 
   @override
   Widget build(BuildContext context) {
@@ -337,7 +220,7 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
                                   }
                                   Navigator.pushReplacement(context,
                                       MaterialPageRoute(
-                                          builder: (context) => HomePage()));
+                                          builder: (context) => Home()));
                                   userLogin();
                                 },
                                 child: Material(
@@ -385,9 +268,10 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
                 bottom: 20.0, // Alt kenara 20px mesafe
                 left: 20.0, // Sol kenara 20px mesafe
                 child: GestureDetector(
-                  onTap: () {
+                  onTap: () async {
                     // Acil durum butonuna tıklama işlemi
                     // Burada istediğiniz acil durum işlevini ekleyebilirsiniz
+                    await _getCurrentLocation();
                     print('Acil Durum Butonuna Tıklandı');
                   },
                   child: AnimatedBuilder(

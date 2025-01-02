@@ -1,6 +1,8 @@
+import 'package:emergencywoman/pages/onboard.dart';
 import 'package:flutter/material.dart';
 import 'package:emergencywoman/user_Screen/user_login_screen.dart';
 import 'package:emergencywoman/user_Screen/user_signup_screen.dart';
+import 'package:geolocator/geolocator.dart';
 
 class SosScreen extends StatefulWidget {
   @override
@@ -32,6 +34,38 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
     super.dispose();
   }
 
+  Future<void> _getCurrentLocation() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Konum Servislerinin Etkin Olup Olmadığını Kontrol Et
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      print('Konum servisleri devre dışı.');
+      return;
+    }
+
+    // Konum İzinlerini Kontrol Et ve Gerekirse İsteyin
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        print('Konum izni reddedildi.');
+        return;
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      print('Konum izinleri kalıcı olarak reddedildi.');
+      return;
+    }
+
+    // Mevcut Konumu Al
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    print('Mevcut Konum: Lat: ${position.latitude}, Lon: ${position.longitude}');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,8 +85,9 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
           children: [
             Spacer(),
             GestureDetector(
-              onTap: () {
+              onTap: () async {
                 print('SOS BUTONUNA BASILDI !!!');
+                await _getCurrentLocation(); // Konum Bilgisini Al
               },
               child: AnimatedBuilder(
                 animation: _animation,
@@ -68,7 +103,7 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
                       ),
                       child: Center(
                         child: Image.asset(
-                          "images/daisy1.png",
+                          "images/lavender.png",
                           width: 300,
                           height: 300,
                           fit: BoxFit.cover,
@@ -89,7 +124,7 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.push(
-                          context, MaterialPageRoute(builder: (_) => SignUp()));
+                          context, MaterialPageRoute(builder: (_) => Onboard()));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFFFCE4EC),
@@ -97,7 +132,7 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
                       shape: CircleBorder(),
                       minimumSize: Size(100, 100),
                     ),
-                    child: Text('Giriş Yap \n  Kayıt Ol'),
+                    child: Text('Başlarken'),
                   ),
                 ),
               ],
