@@ -33,6 +33,11 @@ app.*.symbols
 
 app.*.map.json
 
+*.cc
+*.cmake
+*.lock
+*.swift
+
 
 /android/app/debug
 /android/app/profile
