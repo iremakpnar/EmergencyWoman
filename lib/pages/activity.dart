@@ -97,12 +97,12 @@ class _ActivityPageState extends State<ActivityPage> {
             return Card(
               margin: EdgeInsets.all(10),
               child: ListTile(
-                leading: Image.asset(event['icon']!),
-                title: Text(event['event']!),
+                leading: Image.asset(event['icon']!,width: 50, height: 50,),
+                title: Text(event['event']! , style: TextStyle(fontSize: 20),),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(event['description']!),
+                    Text(event['description']!, style: TextStyle(fontSize: 18),),
                     SizedBox(height: 5),
                     Text(
                       'Tarih: ${event['date']}',
