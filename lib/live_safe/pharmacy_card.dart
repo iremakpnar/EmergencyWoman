@@ -12,7 +12,7 @@ class PharmacyCard extends StatelessWidget {
         children: [
           InkWell(
             onTap: (){
-              onMapFunction!('pharmacies near me');
+              onMapFunction!('eczane');
             },
             child: Card(
               elevation: 6.0,
@@ -30,7 +30,7 @@ class PharmacyCard extends StatelessWidget {
               ),
             ),
           ),
-          Text("Pharmacies")
+          Text("Eczane")
         ],
       ),
     );

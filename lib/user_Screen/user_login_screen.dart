@@ -1,3 +1,4 @@
+import 'package:emergencywoman/pages/bottomnav.dart';
 import 'package:emergencywoman/user_Screen/user_signup_screen.dart';
 import 'package:emergencywoman/widget/home_widgets/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -220,7 +221,7 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
                                   }
                                   Navigator.pushReplacement(context,
                                       MaterialPageRoute(
-                                          builder: (context) => Home()));
+                                          builder: (context) => BottomNav()));
                                   userLogin();
                                 },
                                 child: Material(
