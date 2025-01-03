@@ -60,7 +60,7 @@ class _ProfileState extends State<Profile> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Nilay",
+                          "İrem",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 25.0,
@@ -86,7 +86,7 @@ class _ProfileState extends State<Profile> {
             SizedBox(height: 20),
             ListTile(
               leading: Icon(Icons.note_alt_outlined, color: Color(0xff622c4f),),
-              title: Text("To-Do List"),
+              title: Text("Yapılacaklar Listesi"),
               onTap: () {
                 Navigator.push(
                   context,
