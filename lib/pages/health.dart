@@ -3,6 +3,7 @@ import 'package:emergencywoman/health_areas/breast_cancer.dart';
 import 'package:emergencywoman/health_areas/regl.dart';
 import 'package:emergencywoman/health_areas/menopouse.dart';
 import 'package:emergencywoman/health_areas/polycystic_ovary.dart';
+import 'package:emergencywoman/health_areas/hygiene.dart';
 
 class HealthPage extends StatelessWidget {
   const HealthPage({super.key});
@@ -254,6 +255,60 @@ class HealthPage extends StatelessWidget {
                             SizedBox(height: 15,),
                             Text(
                               "Polikistik over, yumurtalıklarda \nkist oluşumu ve hormonal \ndengesizlikle karakterize bir \ndurumdur.",
+                              style: TextStyle(
+                                fontSize: 16.0,
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              SizedBox(height: 20),
+              Container(
+                width: double.infinity,
+                height: 200,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HygienePage()), // BreastCancer sayfasına geçiş
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white70,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image.asset(
+                        'icons/hygiene.png',
+                        width: 90,
+                        height: 90,
+                      ),
+                      SizedBox(width: 10.0,),
+                      Padding(
+                        padding: const EdgeInsets.only(top:15.0,),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Kişisel Bakım",
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                color: Colors.pink,
+                              ),
+                            ),
+                            SizedBox(height: 15,),
+                            Text(
+                              "Vajinal sağlık, genel sağlığın bir \nparçasıdır.Doğru hijyen alışkanlıkları\nve düzenli kontrollerle sağlıklı\nbir yaşam sürdürülebilir.",
                               style: TextStyle(
                                 fontSize: 16.0,
                               ),
