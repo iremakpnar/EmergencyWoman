@@ -6,6 +6,10 @@
         android:label="emergencywoman"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB42sJwwOP8-pB9nGvkG7Lj4dT9-UrGM3w"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

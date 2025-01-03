@@ -27,6 +27,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Color(0xffffc2c1), // AppBar'ın arka plan rengini burada belirleyebilirsiniz
       ),
       body: pages[_index], // Burada ana sayfa ve diğer sayfalar gösterilecek
+/*
       bottomNavigationBar: CurvedNavigationBar(
         items: [
           Icon(Icons.home, size: 40),
@@ -43,6 +44,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Color(0xff622c4f),
         buttonBackgroundColor: Color(0xffcb5579),
       ),
+      */
     );
   }
 }
@@ -69,7 +71,7 @@ class _AnaPageState extends State<AnaPage> {
         children: [
           SizedBox(height: 20),
           CustomCarousel(),
-          SizedBox(height: 100), //20'ydi deneme yapmak için değer değişikliği yaptım.
+          SizedBox(height: 50), //20'ydi deneme yapmak için değer değişikliği yaptım.
           Center(
             child: GestureDetector(
               onTap: () {
@@ -77,11 +79,11 @@ class _AnaPageState extends State<AnaPage> {
                 print("ACİL BUTONUNA BASILDI !!");
               },
               child: CircleAvatar(
-                radius: screenWidth * 0.35 / 2,
-                backgroundColor: Colors.white,
+                radius: screenWidth * 0.25,
+                backgroundColor: Colors.white70,
                 child: ClipOval(
                   child: Image.asset(
-                    "images/daisy1.png",
+                    "images/lavender.png",
                     width: screenWidth * 0.35,
                     height: screenWidth * 0.35,
                     fit: BoxFit.cover,
@@ -90,7 +92,7 @@ class _AnaPageState extends State<AnaPage> {
               ),
             ),
           ),
-          SizedBox(height: 80,), // Explore LifeSafe kısmını aşağıya kaydırmak için.
+          SizedBox(height: 60,), // Explore LifeSafe kısmını aşağıya kaydırmak için.
           Padding(padding:
           const EdgeInsets.all(8.0),
             child: Text("Explore LiveSafe" ,
