@@ -59,7 +59,7 @@ class _HomeState extends State<Home> {
           "Merhaba, İrem",
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Color(0xffffc2c1), // AppBar'ın arka plan rengini burada belirleyebilirsiniz
+        backgroundColor: Color(0xFFFFCDD2), // AppBar'ın arka plan rengini burada belirleyebilirsiniz
       ),
       body: pages[_index], // Burada ana sayfa ve diğer sayfalar gösterilecek
 
@@ -83,7 +83,16 @@ class _AnaPageState extends State<AnaPage> {
     return Container(
       width: screenWidth,
       height: screenHeight,
-      color: Color(0xffffc2c1),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xFFFFCDD2),
+            Color(0xFFEF9A9A),
+          ],
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
