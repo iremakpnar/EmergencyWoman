@@ -8,149 +8,111 @@ class ActivityPage extends StatefulWidget {
 }
 
 class _ActivityPageState extends State<ActivityPage> {
+  final List<Map<String, String>> events = [
+    {
+      'event': 'Kadın Liderlik Programları',
+      'description': 'Kadınların liderlik becerilerini geliştirmek amacıyla iş dünyasında, toplumsal yaşamda ve siyasette liderlik pozisyonlarına ulaşmalarına yardımcı olan eğitimler.',
+      'date': '15 Şubat 2025',
+      'icon' : 'icons/networking.png',
+    },
+    {
+      'event': 'Kadın İnovasyon ve Teknoloji Seminerleri',
+      'description': 'Teknoloji alanında kadınların yerini artırmak için yazılım geliştirme, yapay zeka, dijital pazarlama ve veri bilimi gibi konularda eğitimler.',
+      'date': '5 Mart 2025',
+      'icon' : 'icons/technology.png',
+    },
+    {
+      'event': 'Kadınların Yaratıcı Yazarlık Atölyeleri',
+      'description': 'Kadınların içsel düşüncelerini, hayallerini ve hikayelerini yazılı olarak ifade etmelerini sağlayan yazarlık atölyeleri.',
+      'date': '20 Mart 2025',
+      'icon' : 'icons/creative.png',
+    },
+    {
+      'event': 'Kadın İçin Psikolojik Destek ve Terapiler',
+      'description': 'Kadınların psikolojik sağlığını desteklemek amacıyla terapi seansları, stres yönetimi ve kişisel gelişim çalışmaları düzenlenir.',
+      'date': '1 Nisan 2025',
+      'icon' : 'icons/happiness.png',
+    },
+    {
+      'event': 'Kadın Hakları Savunuculuğu Eğitimleri',
+      'description': 'Kadın hakları konusunda farkındalık yaratmak ve kadınların eşit haklarını savunmalarını sağlamak amacıyla eğitimler ve seminerler düzenlenir.',
+      'date': '10 Nisan 2025',
+      'icon' : 'icons/leading_ladies.png',
+    },
+    {
+      'event': 'Kadın Sporcular için Mentorluk Programları',
+      'description': 'Kadın sporcuların kariyerlerini desteklemek amacıyla deneyimli mentorlardan rehberlik sağlanan bir program.',
+      'date': '12 Mayıs 2025',
+      'icon' : 'icons/networking.png',
+    },
+    {
+      'event': 'Kadın Kültürel Değişim Programları',
+      'description': 'Kadınların farklı kültürleri tanımaları ve dünya çapındaki kadınlarla etkileşimde bulunmaları için düzenlenen yurtdışı gezileri ve kültürel değişim programları.',
+      'date': '25 Mayıs 2025',
+      'icon' : 'icons/people.png',
+    },
+    {
+      'event': 'Kadınlar İçin Kişisel Gelişim ve Yaşam Koçluğu',
+      'description': 'Kadınların kişisel gelişimlerine odaklanarak hedef belirleme, zaman yönetimi, öz güven geliştirme gibi konularda rehberlik sunan etkinlikler.',
+      'date': '5 Haziran 2025',
+      'icon' : 'icons/self.png',
+    },
+    {
+      'event': 'Kadın Çiftçiler ve Tarımcılar İçin Eğitimler',
+      'description': 'Kadınların tarımda daha aktif rol almasını sağlayacak organik tarım, üretim yöntemleri ve sürdürülebilir tarım hakkında eğitimler.',
+      'date': '15 Temmuz 2025',
+      'icon' : 'icons/farmer.png',
+    },
+    {
+      'event': 'Kadınların Yaratıcı Sanat Çalışmaları',
+      'description': 'Kadınların resim, heykel, müzik, dans ve diğer sanatsal aktivitelerle kendilerini ifade etmelerini sağlayan yaratıcı etkinlikler.',
+      'date': '1 Ağustos 2025',
+      'icon' : 'icons/painting.png',
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          child: Stack(
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 2.5,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color(0xFFFFCDD2),
-                          Color(0xFFEF9A9A),
-                        ])),
-              ),
-              Container(
-                margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height / 3),
-                height: MediaQuery.of(context).size.height / 2,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                        topRight: Radius.circular(40))),
-                child: Column(
+      appBar: AppBar(
+        title: Text('Kadınlara Yönelik Etkinlikler'),
+        backgroundColor: Color(0xFFFFCDD2),  // Arka plan rengi
+        elevation: 0,
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFFFFCDD2),
+              Color(0xFFEF9A9A),
+            ],
+          ),
+        ),
+        child: ListView.builder(
+          itemCount: events.length,
+          itemBuilder: (context, index) {
+            final event = events[index];
+            return Card(
+              margin: EdgeInsets.all(10),
+              child: ListTile(
+                leading: Image.asset(event['icon']!),
+                title: Text(event['event']!),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 20),
+                    Text(event['description']!),
+                    SizedBox(height: 5),
                     Text(
-                      'Spor Motivasyonları ve Alanlar',
-                      style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87),
-                    ),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Text(
-                        'Sağlıklı bir yaşam için sporu hayatınıza katabilirsiniz. İşte öneriler:',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 16, color: Colors.black54),
-                      ),
-                    ),
-                    Expanded(
-                      child: ListView(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        children: [
-                          ListTile(
-                            leading: Icon(Icons.fitness_center, color: Colors.pink),
-                            title: Text('Yoga ve Pilates'),
-                            subtitle: Text(
-                                'Esneklik ve zihinsel rahatlama için yoga ve pilates kurslarına katılabilirsiniz.'),
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.directions_run, color: Colors.pink),
-                            title: Text('Koşu ve Yürüyüş'),
-                            subtitle: Text(
-                                'Parklarda veya sahil kenarlarında düzenli olarak yürüyüş yapabilirsiniz.'),
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.pool, color: Colors.pink),
-                            title: Text('Yüzme'),
-                            subtitle: Text('Yüzme hem eğlenceli hem de tüm vücut kaslarını çalıştırır.'),
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.sports, color: Colors.pink),
-                            title: Text('Grup Fitness Dersleri'),
-                            subtitle: Text(
-                                'Zumba, spinning veya dans gibi grup aktiviteleriyle eğlenerek spor yapabilirsiniz.'),
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.park, color: Colors.pink),
-                            title: Text('Doğa Sporları'),
-                            subtitle: Text(
-                                'Hafta sonları trekking, bisiklet sürme gibi aktivitelerle doğanın tadını çıkarın.'),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    Text(
-                      'Spor Dışı Etkinlikler',
-                      style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87),
-                    ),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Text(
-                        'Kendinizi geliştirmek ve keyifli vakit geçirmek için bu etkinlikleri değerlendirebilirsiniz:',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 16, color: Colors.black54),
-                      ),
-                    ),
-                    Expanded(
-                      child: ListView(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        children: [
-                          ListTile(
-                            leading: Icon(Icons.brush, color: Colors.purple),
-                            title: Text('Resim ve Sanat Atölyeleri'),
-                            subtitle: Text(
-                                'Yaratıcılığınızı geliştirmek için resim veya el sanatları kurslarına katılabilirsiniz.'),
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.book, color: Colors.purple),
-                            title: Text('Kitap Kulüpleri'),
-                            subtitle: Text(
-                                'Yeni kitaplar keşfetmek ve tartışmalara katılmak için kitap kulüplerine üye olun.'),
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.cookie, color: Colors.purple),
-                            title: Text('Yemek Yapma Kursları'),
-                            subtitle: Text(
-                                'Yeni tarifler öğrenerek mutfakta zaman geçirmekten keyif alın.'),
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.camera_alt, color: Colors.purple),
-                            title: Text('Fotoğrafçılık'),
-                            subtitle: Text(
-                                'Fotoğrafçılık dersleri alarak anılarınızı en iyi şekilde ölümsüzleştirin.'),
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.music_note, color: Colors.purple),
-                            title: Text('Müzik Dersleri'),
-                            subtitle: Text(
-                                'Bir enstrüman çalmayı öğrenmek için kurslara katılabilirsiniz.'),
-                          ),
-                        ],
-                      ),
+                      'Tarih: ${event['date']}',
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
               ),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );

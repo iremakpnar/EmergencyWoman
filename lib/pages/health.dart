@@ -1,154 +1,273 @@
 import 'package:flutter/material.dart';
+import 'package:emergencywoman/health_areas/breast_cancer.dart';
+import 'package:emergencywoman/health_areas/regl.dart';
+import 'package:emergencywoman/health_areas/menopouse.dart';
+import 'package:emergencywoman/health_areas/polycystic_ovary.dart';
 
-class HealthPage extends StatefulWidget {
+class HealthPage extends StatelessWidget {
   const HealthPage({super.key});
 
   @override
-  State<HealthPage> createState() => _HealthPageState();
-}
-
-class _HealthPageState extends State<HealthPage> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false, // Geri tuşunu kapatmak için
+        title: Row(
+          children: [
+            IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.black),
+              onPressed: () {
+                Navigator.pop(context); // Geri gitmek için pop işlemi
+              },
+              padding: EdgeInsets.zero, // Sol taraftan boşluk bırakmaz
+            ),
+            SizedBox(width: 10),
+            Text(
+              "Kadınlarda Sağlık",
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: Color(0xFFFFCDD2),  // Arka plan rengi
+        elevation: 0, // AppBar'ın gölge efekti
+      ),
       body: SingleChildScrollView(
         child: Container(
-          child: Stack(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xFFFFCDD2),
+                Color(0xFFEF9A9A),
+              ],
+            ),
+          ),
+          child: Column(
             children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 2.5,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color(0xFFFFCDD2),
-                          Color(0xFFEF9A9A),
-                        ])),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
               ),
+              SizedBox(height: 20), // Butonlar arasında boşluk
+
+              // Butonlar
               Container(
-                margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height / 3),
-                height: MediaQuery.of(context).size.height / 2,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                        topRight: Radius.circular(40))),
-                child: Column(
-                  children: [
-                    SizedBox(height: 20),
-                    Text(
-                      'Spor Motivasyonları ve Alanlar',
-                      style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87),
+                width: double.infinity,
+                height: 200,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => BreastCancer()), // BreastCancer sayfasına geçiş
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white70,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Text(
-                        'Sağlıklı bir yaşam için sporu hayatınıza katabilirsiniz. İşte öneriler:',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 16, color: Colors.black54),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image.asset(
+                        'icons/breast_cancer.png',
+                        width: 90,
+                        height: 90,
                       ),
-                    ),
-                    Expanded(
-                      child: ListView(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        children: [
-                          ListTile(
-                            leading: Icon(Icons.fitness_center, color: Colors.pink),
-                            title: Text('Yoga ve Pilates'),
-                            subtitle: Text(
-                                'Esneklik ve zihinsel rahatlama için yoga ve pilates kurslarına katılabilirsiniz.'),
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.directions_run, color: Colors.pink),
-                            title: Text('Koşu ve Yürüyüş'),
-                            subtitle: Text(
-                                'Parklarda veya sahil kenarlarında düzenli olarak yürüyüş yapabilirsiniz.'),
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.pool, color: Colors.pink),
-                            title: Text('Yüzme'),
-                            subtitle: Text('Yüzme hem eğlenceli hem de tüm vücut kaslarını çalıştırır.'),
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.sports, color: Colors.pink),
-                            title: Text('Grup Fitness Dersleri'),
-                            subtitle: Text(
-                                'Zumba, spinning veya dans gibi grup aktiviteleriyle eğlenerek spor yapabilirsiniz.'),
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.park, color: Colors.pink),
-                            title: Text('Doğa Sporları'),
-                            subtitle: Text(
-                                'Hafta sonları trekking, bisiklet sürme gibi aktivitelerle doğanın tadını çıkarın.'),
-                          ),
-                        ],
+                      SizedBox(width: 10),
+                      Padding(
+                        padding: const EdgeInsets.only(top:15.0,),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Meme Kanseri ve Korunma \n Yöntemleri",
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                color: Colors.pink,
+                              ),
+                            ),
+                            SizedBox(height: 15,),
+                            Text(
+                              "Meme kanseri, meme dokusundaki\nhücrelerin kontrolsüz çoğalmasıdır. \n Erken teşhis hayat kurtarır; ",
+                              style: TextStyle(
+                                fontSize: 16.0,
+                              ),
+                            ),
+
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 20),
-                    Text(
-                      'Spor Dışı Etkinlikler',
-                      style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87),
-                    ),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Text(
-                        'Kendinizi geliştirmek ve keyifli vakit geçirmek için bu etkinlikleri değerlendirebilirsiniz:',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 16, color: Colors.black54),
-                      ),
-                    ),
-                    Expanded(
-                      child: ListView(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        children: [
-                          ListTile(
-                            leading: Icon(Icons.brush, color: Colors.purple),
-                            title: Text('Resim ve Sanat Atölyeleri'),
-                            subtitle: Text(
-                                'Yaratıcılığınızı geliştirmek için resim veya el sanatları kurslarına katılabilirsiniz.'),
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.book, color: Colors.purple),
-                            title: Text('Kitap Kulüpleri'),
-                            subtitle: Text(
-                                'Yeni kitaplar keşfetmek ve tartışmalara katılmak için kitap kulüplerine üye olun.'),
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.cookie, color: Colors.purple),
-                            title: Text('Yemek Yapma Kursları'),
-                            subtitle: Text(
-                                'Yeni tarifler öğrenerek mutfakta zaman geçirmekten keyif alın.'),
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.camera_alt, color: Colors.purple),
-                            title: Text('Fotoğrafçılık'),
-                            subtitle: Text(
-                                'Fotoğrafçılık dersleri alarak anılarınızı en iyi şekilde ölümsüzleştirin.'),
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.music_note, color: Colors.purple),
-                            title: Text('Müzik Dersleri'),
-                            subtitle: Text(
-                                'Bir enstrüman çalmayı öğrenmek için kurslara katılabilirsiniz.'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+
+                    ],
+                  ),
                 ),
               ),
+
+              SizedBox(height: 20),
+              Container(
+                width: double.infinity,
+                height: 200,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MenopousePage()), // BreastCancer sayfasına geçiş
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white70,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image.asset(
+                        'icons/menopause.png',
+                        width: 90,
+                        height: 90,
+                      ),
+                      SizedBox(width: 10.0,),
+                      Padding(
+                        padding: const EdgeInsets.only(top:15.0,),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Menopoz",
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                color: Colors.pink,
+                              ),
+                            ),
+                            SizedBox(height: 15,),
+                            Text(
+                              "Menopoz, kadının adet döngüsünün\ndoğal olarak sona erdiği dönemdir.\nGenellikle 45-55 yaş arasında \ngörülür ve ...",
+                              style: TextStyle(
+                                fontSize: 16.0,
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 20), // Butonlar arasında boşluk
+              Container(
+                width: double.infinity,
+                height: 200,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ReglPage()), // BreastCancer sayfasına geçiş
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white70,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image.asset(
+                        'icons/menstruation.png',
+                        width: 90,
+                        height: 90,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top:15.0,),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Regl Döngüsü",
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                color: Colors.pink,
+                              ),
+                            ),
+                            SizedBox(height: 15,),
+                            Text(
+                              "Regl, rahim duvarının dökülerek\nvajinal yolla atılmasıdır.\nOrtalama 28 günde bir \ngerçekleşir ve...",
+                              style: TextStyle(
+                                fontSize: 16.0,
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              Container(
+                width: double.infinity,
+                height: 200,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PolycysticOvaryPage()), // BreastCancer sayfasına geçiş
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white70,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image.asset(
+                        'icons/cervical_cancer.png',
+                        width: 80,
+                        height: 80,
+                      ),
+                      SizedBox(width: 10.0,),
+                      Padding(
+                        padding: const EdgeInsets.only(top:15.0,),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Polikistik Over Sendromu (PCOS)",
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                color: Colors.pink,
+                              ),
+                            ),
+                            SizedBox(height: 15,),
+                            Text(
+                              "Polikistik over, yumurtalıklarda \nkist oluşumu ve hormonal \ndengesizlikle karakterize bir \ndurumdur.",
+                              style: TextStyle(
+                                fontSize: 16.0,
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+
             ],
           ),
         ),
