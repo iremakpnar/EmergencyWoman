@@ -147,8 +147,8 @@ class _OnboardState extends State<Onboard> {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color(0xFFFFCDD2),
-                  Color(0xFFEF9A9A),
+                  Color(0xFFD4E4ED),
+                  Color(0xFFB0D1D7),
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,

@@ -20,7 +20,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xFFFFCDD2),
+        color: Color(0xFFB3E5FC),
         child: Column(
           children: [
             Stack(
@@ -30,7 +30,7 @@ class _ProfileState extends State<Profile> {
                   height: MediaQuery.of(context).size.height / 4.3,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    color: Color(0xff622c4f),
+                    color: Color(0xFFCE93D8),
                     borderRadius: BorderRadius.vertical(
                         bottom: Radius.elliptical(
                             MediaQuery.of(context).size.width, 105.0)),

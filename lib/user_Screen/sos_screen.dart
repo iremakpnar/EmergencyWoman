@@ -73,8 +73,8 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color(0xFFFFCDD2),
-              Color(0xFFEF9A9A),
+              Color(0xFFD4E4ED),
+              Color(0xFFB0D1D7),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -127,10 +127,14 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
                           context, MaterialPageRoute(builder: (_) => Onboard()));
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFFCE4EC),
-                      foregroundColor: Color(0xff622c4f),
+                      backgroundColor: Colors.white70,
+                      foregroundColor: Color(0xff9a7ee3),
                       shape: CircleBorder(),
                       minimumSize: Size(100, 100),
+                      textStyle: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     child: Text('Başlarken'),
                   ),

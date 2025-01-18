@@ -59,7 +59,7 @@ class _HomeState extends State<Home> {
           "Merhaba, İrem",
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Color(0xFFFFCDD2), // AppBar'ın arka plan rengini burada belirleyebilirsiniz
+        backgroundColor: Color(0xFFD4E4ED), // AppBar'ın arka plan rengini burada belirleyebilirsiniz
       ),
       body: pages[_index], // Burada ana sayfa ve diğer sayfalar gösterilecek
 
@@ -88,8 +88,8 @@ class _AnaPageState extends State<AnaPage> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Color(0xFFFFCDD2),
-            Color(0xFFEF9A9A),
+            Color(0xFFD4E4ED),
+            Color(0xFFB3E5FC),
           ],
         ),
       ),
@@ -112,8 +112,8 @@ class _AnaPageState extends State<AnaPage> {
                 child: ClipOval(
                   child: Image.asset(
                     "images/lavender.png",
-                    width: screenWidth * 0.35,
-                    height: screenWidth * 0.35,
+                    width: screenWidth * 0.70,
+                    height: screenWidth * 0.70,
                     fit: BoxFit.cover,
                   ),
                 ),

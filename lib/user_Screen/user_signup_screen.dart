@@ -149,8 +149,8 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      Color(0xFFFFCDD2),
-                      Color(0xFFEF9A9A),
+                      Color(0xFFD4E4ED),
+                      Color(0xFFB0D1D7),
                     ],
                   ),
                 ),
